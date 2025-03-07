@@ -4,6 +4,7 @@ import Question from '../Question/Question';
 import PriceList from '../PriceList/PriceList';
 
 const Price = () => {
+    
     return (
         <>
         <Navbar/>
