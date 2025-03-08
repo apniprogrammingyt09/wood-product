@@ -37,9 +37,9 @@ const Footer = () => {
                 <a href="#" className="text-white hover:text-gray-300 transition">Privacy Policy</a>
             </div>
         </div>
-        <div className="text-left mt-8">
-            <p className="text-lg">Company Name: Kodrish Innovation & Solution</p>
-            <p className="text-sm">Developers: Sanidhya, Murlidhar</p>
+        <div className="text-center mt-8">
+            <p className="text-lg">Developed by: Kodrish Innovation & Solution LLP </p>
+            <p className="text-sm">Developers: Sanidhya Soni, Murlidhar Carpenter & Krishna Chouhan </p>
         </div>
     </footer>
     );
