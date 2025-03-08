@@ -232,120 +232,140 @@ function PriceList() {
   const totalPages = Math.ceil(priceData.length / 1);
 
   return (
-    <div className="min-h-screen bg-black/90 bg-[url('Vector30.png')] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05)_1px,transparent_1px)_repeat] bg-[length:30px_30px]">
-      
-     
-
+    <div className="min-h-screen bg-black/90 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05)_1px,transparent_1px)_repeat] bg-[length:30px_30px]">
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <h1 className="text-white text-6xl font-bold text-center mb-16 tracking-wider">
-          PRICE LIST
-        </h1>
+      <div className="max-w-7xl mx-auto px-4 py-8 sm:py-12"></div>
+      <h1 className="text-white text-3xl sm:text-4xl md:text-6xl font-bold text-left fahkwang-semibold mb-8 md:mb-16 tracking-wider">
+        PRICE LIST
+      </h1>
 
-        <div className="relative ">
-          {/* Price Tables */}
-          <div className="grid gap-8 text-black">
-            {priceData
-              .slice(currentPage, currentPage + 1)
-              .map((section, index) => (
-                <div key={index} className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-black">
-                    {/* Left Card - Dimensions */}
-                    <div className="bg-white bg-opacity-5 backdrop-blur-sm rounded-2xl p-6 shadow-xl">
-                      <h2 className="text-black text-xl font-semibold mb-4">
-                        {section.title}
-                      </h2>
-                      <table className="w-full">
-                        <thead>
-                          <tr className="text-black text-sm border-b border-gray-700">
-                            <th className="text-left py-2 font-bold">délka</th>
-                            <th className="text-left py-2 font-bold">šířka</th>
-                            <th className="text-left py-2 font-bold">
-                              tlouštka
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {section.rows.map((row, rowIndex) => (
-                            <tr
-                              key={rowIndex}
-                              className="text-black border-b border-gray-800"
-                            >
-                              <td className="py-3">{row.delka}</td>
-                              <td className="py-3">{row.sirka}</td>
-                              <td className="py-3">{row.tloustka}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-
-                    {/* Right Card - Prices */}
-                    <div className="bg-white bg-opacity-5 backdrop-blur-sm rounded-2xl p-6 shadow-xl relative overflow-hidden">
-                      <div className="absolute top-0 right-0 w-1/2 h-full bg-[#cd8a7b] bg-opacity-10" />
-                      <table className="w-full relative z-10">
-                        <thead>
-                          <tr className="text-black text-sm border-b border-gray-700 ">
-                            <th className="text-left py-8 font-bold">m³</th>
-                            <th className="text-left py-5  font-bold">
-                              cena m³
-                            </th>
-                            <th className="text-left py-5 text-black font-semibold">
-                              cena ks.
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {section.rows.map((row, rowIndex) => (
-                            <tr
-                              key={rowIndex}
-                              className="text-black border-b border-gray-800"
-                            >
-                              <td className="py-3">{row.m3}</td>
-                              <td className="py-3">{row.cenaM3}</td>
-                              <td className="py-3 text-black ">{row.cenaKs}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              ))}
-          </div>
-
-          {/* Navigation Arrows */}
+      <div className="relative">
+      <div className="mt-8 md:mt-12">
+        <div className="flex justify-between items-center">
           <button
             onClick={() => setCurrentPage((prev) => Math.max(0, prev - 1))}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-16 text-white opacity-50 hover:opacity-100 transition-all hover:scale-110"
+            className={`text-white p-2 rounded-full bg-black/30 backdrop-blur-sm transition-all hover:scale-110 flex items-center justify-center
+                  ${
+                    currentPage === 0
+                      ? "opacity-30 cursor-not-allowed"
+                      : "opacity-80 hover:opacity-100"
+                  }`}
             disabled={currentPage === 0}
           >
-            <ChevronLeft size={48} />
+            <ChevronLeft size={24} className="sm:w-8 sm:h-8" />
           </button>
           <button
             onClick={() =>
               setCurrentPage((prev) => Math.min(totalPages - 1, prev + 1))
             }
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-16 text-white opacity-50 hover:opacity-100 transition-all hover:scale-110"
+            className={`text-white p-2 rounded-full bg-black/30 backdrop-blur-sm transition-all hover:scale-110 flex items-center justify-center
+                  ${
+                    currentPage === totalPages - 1
+                      ? "opacity-30 cursor-not-allowed"
+                      : "opacity-80 hover:opacity-100"
+                  }`}
             disabled={currentPage === totalPages - 1}
           >
-            <ChevronRight size={48} />
+            <ChevronRight size={24} className="sm:w-8 sm:h-8" />
           </button>
+      </div>
+      
+      {/* Price Tables */}
+      <div className="grid gap-4 sm:gap-8 text-black">
+        {priceData.slice(currentPage, currentPage + 1).map((section, index) => (
+          <div key={index} className="space-y-4">
+            <h2 className="text-white text-xl font-semibold mb-2 md:hidden">
+              {section.title}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-black">
+              {/* Left Card - Dimensions */}
+              <div className="bg-white bg-opacity-5 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-xl">
+                <h2 className="text-white text-xl font-semibold mb-4 hidden md:block">
+                  {section.title}
+                </h2>
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="text-black text-sm border-b border-gray-700">
+                        <th className="text-left py-2 font-bold">délka</th>
+                        <th className="text-left py-2 font-bold">šířka</th>
+                        <th className="text-left py-2 font-bold">tlouštka</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {section.rows.map((row, rowIndex) => (
+                        <tr
+                          key={rowIndex}
+                          className="text-gray-800 border-b border-gray-800"
+                        >
+                          <td className="py-2 sm:py-3">{row.delka}</td>
+                          <td className="py-2 sm:py-3">{row.sirka}</td>
+                          <td className="py-2 sm:py-3">{row.tloustka}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Right Card - Prices */}
+              <div className="bg-white bg-opacity-5 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-1/2 h-full bg-[#cd8a7b] bg-opacity-10" />
+                <div className="overflow-x-auto">
+                  <table className="w-full relative z-10">
+                    <thead>
+                      <tr className="text-black text-sm border-b border-gray-700">
+                        <th className="text-left py-3 sm:py-5 font-bold">m³</th>
+                        <th className="text-left py-3 sm:py-5 font-bold">
+                          cena m³
+                        </th>
+                        <th className="text-left py-3 sm:py-5 text-white font-semibold">
+                          cena ks.
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {section.rows.map((row, rowIndex) => (
+                        <tr
+                          key={rowIndex}
+                          className="text-gray-800 border-b border-gray-800"
+                        >
+                          <td className="py-2 sm:py-3">{row.m3}</td>
+                          <td className="py-2 sm:py-3">{row.cenaM3}</td>
+                          <td className="py-2 sm:py-3 text-white">
+                            {row.cenaKs}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Navigation Arrows - Fixed positioning for better responsiveness */}
+     
 
           {/* Pagination Dots */}
-          <div className="flex justify-center space-x-3 mt-8">
+          <div className="flex justify-center space-x-3 p-4">
             {Array.from({ length: totalPages }).map((_, i) => (
               <button
                 key={i}
                 onClick={() => setCurrentPage(i)}
-                className={`w-2 h-2 rounded-full transition-all transform hover:scale-150 ${
+                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all transform hover:scale-150 ${
                   i === currentPage
                     ? "bg-white scale-150"
                     : "bg-gray-600 hover:bg-gray-400"
                 }`}
+                aria-label={`Go to page ${i + 1}`}
               />
             ))}
           </div>
+
+         
         </div>
       </div>
     </div>

@@ -14,6 +14,30 @@ const WhatWeOffer = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleOrder = () => {
+
+    // Check if the device is mobile
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      // For mobile devices - direct call
+      window.location.href = "tel:123456789";
+    } else {
+      // For desktop - copy number to clipboard
+      navigator.clipboard.writeText("123456789")
+        .then(() => {
+          alert("Phone number copied to clipboard: 123456789");
+        })
+        .catch(err => {
+          console.error('Failed to copy: ', err);
+          alert("Could not copy phone number. The number is: 123456789");
+        });
+      return; // Prevent the default redirect that follows
+    }
+
+    window.location.href = "tel:123456789";
+  }
+
   return (
     <div
       className="w-full min-h-screen bg-blend-luminosity backdrop-brightness-200"
@@ -102,7 +126,7 @@ const WhatWeOffer = () => {
             </p>
           </div>
           <div className="flex justify-center md:justify-start">
-            <button className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-8 md:px-12 rounded-full transition duration-300">
+            <button onClick={handleOrder} className="bg-[#728aac] hover:bg-gray-600 text-white font-bold py-2 px-8 md:px-12 rounded-full transition duration-300">
               Order
             </button>
           </div>

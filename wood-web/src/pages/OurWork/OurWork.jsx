@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import kitchen from "../../assets/modern-wooden-kitchen-interior-steel-kitchen-faucet 2.png";
+import livingRoom from "../../assets/pexels-pixabay-275484.jpg";
+import dinning from "../../assets/pexels-pixabay-276651.jpg";
 
 const images = [
-  kitchen,kitchen,kitchen
+  kitchen,livingRoom,dinning
 ];
 
 export default function ImageSlider() {

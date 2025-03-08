@@ -16,8 +16,9 @@ export default function Contact() {
         {/* Contact Info and Google Map */}
         <div className="flex flex-col md:flex-row items-center md:items-start justify-between">
           {/* Contact Information */}
-          <div className="flex flex-col space-y-4 w-full md:w-1/2 md:pr-8 items-center md:items-start">
-            <h2 className="text-5xl font-bold text-center md:text-left">
+          <div className="flex justify-center items-center w-full h-full">
+            <div className="flex flex-col space-y-4 w-full md:w-1/2 md:pr-8 items-center md:items-start">
+            <h2 className=" text-5xl md:text-7xl  font-bold text-center md:text-left">
               CONTACT
             </h2>
             <br />
@@ -30,6 +31,7 @@ export default function Contact() {
               <FaMapMarkerAlt className="text-xl text-gray-400" />
               <p className="text-lg">XYZ 1166/0, 150 00</p>
             </div>
+          </div>
           </div>
 
           {/* Google Map Section */}
